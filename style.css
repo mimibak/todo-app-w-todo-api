@@ -1,0 +1,101 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-size: 1rem;
+  font-family: "Courier New", Courier, monospace;
+  background-image: URL("https://images.unsplash.com/photo-1551233378-136a5b5564a5?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
+}
+
+h1 {
+  font-family: "Amatic SC", handwriting;
+  font-size: 4rem;
+}
+
+article {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  padding: 2rem;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.782);
+  border-style: outset;
+  border-radius: 1rem;
+}
+
+#radioBtn {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 1rem 1rem 0rem 1rem;
+  font-family: "Courier New", Courier, monospace;
+}
+
+li {
+  text-align: left;
+  padding: 0.2rem 3rem 0.2rem 3rem;
+  list-style: none;
+}
+
+label {
+  display: inline-block;
+  margin-right: 1rem;
+  /*vertical-align: middle; /* Adjust the vertical alignment */
+}
+
+input {
+  vertical-align: middle; /* Adjust the vertical alignment */
+  margin-right: 0.5rem;
+}
+
+#removeBtn,
+#addTodo {
+  padding: 0.3rem;
+  font-family: "Courier New", Courier, monospace;
+}
+
+button#removeBtn {
+  width: 10rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button {
+  border-radius: 0.5rem;
+  border: none;
+  background-color: white;
+  border-style: outset;
+  height: 2rem;
+}
+
+input {
+  font-family: "Courier New", Courier, monospace;
+  border-color: aliceblue;
+  height: 2rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+form {
+  padding: 1rem 2rem;
+}
+
+#toDoList {
+  padding: 0;
+}
+
+p {
+  align-items: baseline;
+}
+
+#inputField {
+  width: 10rem;
+}

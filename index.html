@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=amatic-sc:700" rel="stylesheet" />
+    <title>ToDo App Api
+    </title>
+</head>
+
+<body>
+    <article>
+        <header>
+            <h1>ToDo App</h1>
+        </header>
+        <ul id="radioBtn">
+            <li><label for="allFilter">All</label>
+                <input type="radio" id="allFilter" name="filter" checked>
+            </li>
+            <li><label for="openFilter">Open</label>
+                <input type="radio" id="openFilter" name="filter">
+            </li>
+            <li><label for="doneFilter">Done</label>
+                <input type="radio" id="doneFilter" name="filter">
+            </li>
+        </ul>
+
+        <button id="removeBtn">Remove done Todos</button>
+
+        <form id="taskList">
+            <input type="text" id="inputField" name="iText" placeholder="What's up?">
+            <button id="addTodo">Add</button>
+            <ul id="toDoList"></ul>
+        </form>
+
+        <script src="script.js"></script>
+    </article>
+</body>
+
+</html>
