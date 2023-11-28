@@ -3,8 +3,10 @@ let count = 0;
 let filter = "all";
 const newToDoInput = document.querySelector("#inputField");
 
-renderToDos();
-getTodos();
+readTodos(todosArr).then((jsonData) => {
+  todosArr = jsonData;
+  renderToDos();
+});
 
 function addToDo(event) {
   event.preventDefault();
@@ -16,31 +18,11 @@ function addToDo(event) {
       done: false,
     };
     newToDoInput.value = "";
-
-    fetch("http://localhost:4730/todos", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(newToDo),
-    })
-      .then((res) => res.json())
-      .then((newToDoFromApi) => {
-        todosArr.push(newToDoFromApi);
-        renderToDos();
-      });
-  }
-}
-
-renderToDos();
-
-function getTodos() {
-  fetch("http://localhost:4730/todos")
-    .then((response) => response.json())
-    .then((jsonData) => {
-      todosArr = jsonData;
+    createToDo(newToDo).then((newToDoFromApi) => {
+      todosArr.push(newToDoFromApi);
       renderToDos();
     });
+  }
 }
 
 function renderToDos() {
@@ -89,14 +71,7 @@ function doneTask(event) {
     changedTodo.done = false;
     event.target.Obj.done = false;
   }
-
-  fetch("http://localhost:4730/todos/" + event.target.Obj.id, {
-    method: "PUT",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(changedTodo),
-  });
+  updateToDo(event.target.Obj.id, changedTodo); //event.target.Obj.id = Argument welches den Parameter (api.js) wiedergibt.
 }
 
 function createID(text) {
@@ -146,9 +121,36 @@ function deleteTodo() {
     if (deletedObj.done === true) {
       fetch("http://localhost:4730/todos/" + deletedObj.id, {
         method: "DELETE",
-      }).then(getTodos());
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Network response not ok!");
+          }
+        })
+        .then(readTodos())
+        .catch((error) => {
+          alert(error.message);
+        });
     }
   }
-
   renderToDos();
+}
+
+function removeToDoItem() {
+  let fetches = [];
+  for (const deletedToDo of state) {
+    if (deletedToDo.done) {
+      const todoID = deletedToDo.id;
+      fetches.push(removeFromAPI(todoID));
+    }
+  }
+  Promise.all(fetches).then((values) => {
+    if (values.indexOf(undefined) != -1) {
+      console.log(values);
+      state = openTodos;
+      renderToDos();
+    }
+  });
 }
